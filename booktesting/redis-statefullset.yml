@@ -23,6 +23,23 @@ spec:
           volumeMounts:
               - name: data
                 mountPath: /data
+              - name: script
+                mountPath: /scripts/launch.sh
+                subPath: launch.sh
+              - name: passwd-volume
+                mountPath: /etc/redis-passwd
+          command:
+            - sh
+            - -c
+            - /scripts/launch.sh
+      volumes:
+        - name: script
+          configMap:
+            name: redis-config
+            defaultMode: 0777
+        - name: passwd-volume
+          secret:
+            secretName: redis-passwd
   volumeClaimTemplates:
     - metadata:
         name: data
@@ -31,6 +48,3 @@ spec:
         resources:
           requests:
             storage: 10Gi
-
-
-      
