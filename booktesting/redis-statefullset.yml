@@ -25,13 +25,15 @@ spec:
                 mountPath: /data
               - name: script
                 mountPath: /script/launch.sh
-                subPath: launch.sh
               - name: passwd-volume
                 mountPath: /etc/redis-passwd
-          command:
-            - sh
-            - -c
-            - /script/launch.sh
+          command: ["sh","-c","cp -r /script/launch.sh /launch.sh && sh /launch.sh"]
+            #- sh
+            #- -c
+            #- wait 5
+            #- sh
+            #- -c
+            #- /script/launch.sh
       volumes:
         - name: script
           configMap:

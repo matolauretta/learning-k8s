@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: supporthelperpod
+  namespace: default
+spec:
+  containers:
+  - image: alpine:3.15.0
+    command:
+      - /bin/sh
+      - "-c"
+      - "sleep 5m"
+    imagePullPolicy: Always
+    name: alpine
+  restartPolicy: Always
